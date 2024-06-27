@@ -44,6 +44,7 @@ const DataGridDemo: React.FC = () => {
   const error = useSelector((state: RootState) => state.agent.error);
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const [formState, setFormState] = useState({
     partnerName: "",
     storeName: "",
@@ -131,9 +132,13 @@ const DataGridDemo: React.FC = () => {
     status: item.status,
   }));
 
+  const filteredRows = newArr.filter((row) =>
+    row.partnerName.toLowerCase().includes(searchValue.toLowerCase())
+  );
+
   useEffect(() => {
     dispatch(fetchData());
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -148,7 +153,7 @@ const DataGridDemo: React.FC = () => {
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("Search value:", event.target.value);
+    setSearchValue(event.target.value);
   };
 
   const handleView = (row: DataRow) => {
@@ -226,7 +231,7 @@ const DataGridDemo: React.FC = () => {
       </Box>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
-          rows={newArr}
+          rows={filteredRows}
           columns={columns}
           pageSize={5}
           checkboxSelection
@@ -249,7 +254,7 @@ const DataGridDemo: React.FC = () => {
                   <Select
                     name="partnerName"
                     value={formState.partnerName}
-                    // onChange={handleDropdownChange}
+                    onChange={handleDropdownChange}
                     label="Partner Name"
                   >
                     <MenuItem value="Partner1">Partner1</MenuItem>
@@ -262,7 +267,7 @@ const DataGridDemo: React.FC = () => {
                   <Select
                     name="storeName"
                     value={formState.storeName}
-                    // onChange={handleDropdownChange}
+                    onChange={handleDropdownChange}
                     label="Store Location"
                   >
                     <MenuItem value="Location1">Location1</MenuItem>
@@ -275,7 +280,7 @@ const DataGridDemo: React.FC = () => {
                   <Select
                     name="yearOfService"
                     value={formState.yearOfService}
-                    // onChange={handleDropdownChange}
+                    onChange={handleDropdownChange}
                     label="Years of Service"
                   >
                     <MenuItem value="1">1</MenuItem>
