@@ -138,7 +138,7 @@ const DataGridDemo: React.FC = () => {
 
   useEffect(() => {
     dispatch(fetchData());
-  }, [dispatch]);
+  }, []);
 
   if (loading) {
     return <p>Loading...</p>;
