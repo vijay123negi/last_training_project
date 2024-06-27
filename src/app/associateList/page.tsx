@@ -254,7 +254,7 @@ const DataGridDemo: React.FC = () => {
                   <Select
                     name="partnerName"
                     value={formState.partnerName}
-                    onChange={handleDropdownChange}
+                    // onChange={handleDropdownChange}
                     label="Partner Name"
                   >
                     <MenuItem value="Partner1">Partner1</MenuItem>
@@ -267,7 +267,7 @@ const DataGridDemo: React.FC = () => {
                   <Select
                     name="storeName"
                     value={formState.storeName}
-                    onChange={handleDropdownChange}
+                    // onChange={handleDropdownChange}
                     label="Store Location"
                   >
                     <MenuItem value="Location1">Location1</MenuItem>
@@ -280,7 +280,7 @@ const DataGridDemo: React.FC = () => {
                   <Select
                     name="yearOfService"
                     value={formState.yearOfService}
-                    onChange={handleDropdownChange}
+                    // onChange={handleDropdownChange}
                     label="Years of Service"
                   >
                     <MenuItem value="1">1</MenuItem>
